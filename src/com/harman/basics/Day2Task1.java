@@ -11,18 +11,23 @@ public class Day2Task1 {
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://www.salesforce.com/in/form/signup/freetrial-sales/");
 		
-		driver.findElement(By.id("UserFirstName-QlRv")).sendKeys("jhon");
-		driver.findElement(By.id("UserLastName-nGne")).sendKeys("wick");
-		driver.findElement(By.id("UserEmail-TEJr")).sendKeys("john@gmail.com");
-		driver.findElement(By.id("UserTitle-3wMw")).click();
+		driver.findElement(By.cssSelector("[name=UserFirstName]")).sendKeys("jhon");
+		driver.findElement(By.name("UserLastName")).sendKeys("wick");
+		driver.findElement(By.name("UserEmail")).sendKeys("john@gmail.com");
+		driver.findElement(By.name("UserTitle")).click();
 		driver.findElement(By.xpath("//option[text()='IT Manager']")).click();
+		driver.findElement(By.name("CompanyName")).sendKeys("Google");
 
-		driver.findElement(By.id("CompanyEmployees-fbQH")).click();
+		driver.findElement(By.name("CompanyEmployees")).click();
 		driver.findElement(By.xpath("//option[text()='101 - 500 employees']")).click();
-		driver.findElement(By.id("CompanyCountry-hMxk")).click();
-		driver.findElement(By.xpath("//option[text()='United Kingdom']")).click();
+		driver.findElement(By.name("CompanyCountry")).click();
+		driver.findElement(By.xpath("//option[text()='India']")).click();
+		driver.findElement(By.xpath("//div[@class='checkbox-ui']")).click();
+		driver.findElement(By.xpath("//button[text()='start my free trial']")).click();
+		String errorText=driver.findElement(By.xpath("//span[contains(text(),'Enter a valid phone number')]")).getText();
+		System.out.println(errorText);	
 		
-		
+		//driver.quit();
 	}
 
 }
